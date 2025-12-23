@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Limpeza de Sofás – Seu Lar Limpo</title>
+  <style>
+    /* Reset e estilos básicos */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* Cabeçalho */
+    header {
+      background: #25D366;
+      padding: 25px 0;
+      text-align: center;
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 {
+      font-size: 28px;
+    }
+
+    /* Navegação */
+    nav {
+      background: #128C7E;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+      position: sticky;
+      top: 70px;
+      z-index: 90;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      opacity: 0.8;
+    }
+
+    /* Seções */
+    section {
+      padding: 60px 20px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    section p {
+      max-width: 700px;
+      margin: 0 auto 20px;
+    }
+
+    /* Cards de serviços */
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 20px;
+      width: 250px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Botão WhatsApp */
+    .whatsapp-btn {
+      display: inline-block;
+      padding: 15px 25px;
+      background: #25D366;
+      color: #fff;
+      border-radius: 10px;
+      font-weight: bold;
+      margin-top: 20px;
+      transition: 0.3s;
+    }
+
+    .whatsapp-btn:hover {
+      opacity: 0.8;
+    }
+
+    /* Depoimentos */
+    .feedbacks {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .feedback-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      width: 250px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feedback-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .feedback-card .cliente {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .feedback-card .estrelas {
+      color: #FFD700;
+    }
+
+    /* Galeria */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .gallery img {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Pop-up */
+    #popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.5s;
+      z-index: 200;
+    }
+
+    #popup.visible {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    #popup .popup-content {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 400px;
+    }
+
+    #popup .popup-content h3 {
+      margin-bottom: 15px;
+    }
+
+    #popup .popup-content button {
+      padding: 10px 20px;
+      background: #25D366;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #popup .popup-content button:hover {
+      opacity: 0.8;
+    }
+
+    /* Footer */
+    footer {
+      background: #128C7E;
+      color: #fff;
+      text-align: center;
+      padding: 20px 10px;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #fff;
+      font-weight: bold;
+    }
+
+    @media(max-width:768px) {
+
+      .cards,
+      .feedbacks,
+      .gallery {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Cabeçalho -->
+  <header>
+    <h1>🛋️ Limpeza de Sofás – Seu Lar Limpo</h1>
+  </header>
+
+  <!-- Navegação -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#sobre">Sobre Nós</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#depoimentos">Depoimentos</a>
+    <a href="#contato">Contato</a>
+  </nav>
+
+  <!-- Home -->
+  <section id="home">
+    <h2>Comece hoje a cuidar melhor do seu lar!</h2>
+    <p>Seu lar merece atenção e carinho. Com nossos serviços, você mantém seu espaço limpo, saudável e acolhedor para
+      toda a família.</p>
+    <a class="whatsapp-btn"
+      href="https://wa.me/351930577316?text=Olá!%20Quero%20agendar%20uma%20limpeza%20de%20sofá.%20Pode%20me%20ajudar?"
+      target="_blank">📲 Falar no WhatsApp</a>
+  </section>
+
+  <!-- Sobre Nós -->
+  <section id="sobre" style="background:#e0f7ef;">
+    <h2>Sobre Nós</h2>
+    <p>Somos especializados em limpeza de sofás e estofados, utilizando produtos de qualidade e técnicas seguras,
+      garantindo conforto e bem-estar para você e sua família.</p>
+  </section>
+
+  <!-- Serviços -->
+  <section id="servicos">
+    <h2>Nossos Serviços</h2>
+    <div class="cards">
+      <div class="card">Limpeza de Sofás de Tecido</div>
+      <div class="card">Limpeza de Couro</div>
+      <div class="card">Suede e Veludo</div>
+    </div>
+  </section>
+
+  <!-- Galeria -->
+  <section id="galeria" style="background:#e0f7ef;">
+    <h2>Galeria de Trabalhos</h2>
+    <div class="gallery">
+      <img src="https://via.placeholder.com/200x150.png?text=Sofá+1" alt="Sofá limpo 1">
+      <img src="https://via.placeholder.com/200x150.png?text=Sofá+2" alt="Sofá limpo 2">
+      <img src="https://via.placeholder.com/200x150.png?text=Sofá+3" alt="Sofá limpo 3">
+    </div>
+  </section>
+
+  <!-- Depoimentos -->
+  <section id="depoimentos">
+    <h2>Depoimentos de Clientes</h2>
+    <div class="feedbacks">
+      <div class="feedback-card">
+        <p>"Serviço rápido e eficiente! Meu sofá ficou como novo."</p>
+        <div class="cliente">– Ana S.</div>
+        <div class="estrelas">★★★★★</div>
+      </div>
+      <div class="feedback-card">
+        <p>"Equipe educada e profissional. Gostei muito do resultado."</p>
+        <div class="cliente">– Carlos M.</div>
+        <div class="estrelas">★★★★☆</div>
+      </div>
+      <div class="feedback-card">
+        <p>"Excelente atendimento! Aproveitei a promoção e adorei."</p>
+        <div class="cliente">– Mariana R.</div>
+        <div class="estrelas">★★★★★</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section id="contato" style="background:#e0f7ef;">
+    <h2>Entre em Contato</h2>
+    <p>Agende sua limpeza ou tire dúvidas diretamente pelo WhatsApp:</p>
+    <a class="whatsapp-btn"
+      href="https://wa.me/351930577316?text=Olá!%20Quero%20agendar%20uma%20limpeza%20de%20sofá.%20Pode%20me%20ajudar?"
+      target="_blank">📲 Falar no WhatsApp</a>
+  </section>
+
+  <!-- Pop-up Promoção -->
+  <div id="popup">
+    <div class="popup-content">
+      <h3>🎁 Promoção Especial!</h3>
+      <p>Agende sua limpeza hoje e ganhe <strong>10% de desconto</strong>!</p>
+      <a class="whatsapp-btn"
+        href="https://wa.me/351930577316?text=Olá!%20Quero%20aproveitar%20a%2010%%20de%20desconto%20na%20limpeza%20do%20meu%20sofá!"
+        target="_blank">📲 Quero o Desconto</a>
+      <br><br>
+      <button onclick="closePopup()">Fechar</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Limpeza de Sofás – Todos os direitos reservados.</p>
+    <p>Siga-nos nas redes sociais: <a href="#">Instagram</a> | <a href="#">Facebook</a></p>
+  </footer>
+
+  <script>
+    // Animação ao scroll
+    const sections = document.querySelectorAll('section');
+    window.addEventListener('scroll', () => {
+      const trigger = window.innerHeight * 0.8;
+      sections.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        if (top < trigger) section.classList.add('visible');
+      });
+    });
+
+    // Pop-up automático após 3 segundos
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('popup').classList.add('visible');
+      }, 3000);
+    });
+
+    function closePopup() {
+      document.getElementById('popup').classList.remove('visible');
+    }
+  </script>
+
+</body>
+
+</html>

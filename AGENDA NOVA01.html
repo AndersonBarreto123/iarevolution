@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda Luxpurity</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background: radial-gradient(circle at top, #1a1a1a, #0b0b0b);
+      color: #e5e5e5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 480px;
+      width: 90%;
+      background: #121212;
+      border-radius: 18px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .badge {
+      color: #f5c36a;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #bdbdbd;
+      margin-bottom: 26px;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .time-box {
+      background: #1c1c1c;
+      border-radius: 12px;
+      padding: 12px 14px;
+      min-width: 60px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
+
+    .time-box span {
+      display: block;
+      font-size: 22px;
+      font-weight: bold;
+      color: #f5c36a;
+    }
+
+    .time-box small {
+      font-size: 11px;
+      color: #9e9e9e;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cta {
+      display: inline-block;
+      background: linear-gradient(135deg, #c9a14a, #f5d37b);
+      color: #111;
+      padding: 16px 38px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 800;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(201, 161, 74, 0.45);
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(201, 161, 74, 0.65);
+    }
+
+    .social-proof {
+      margin-top: 26px;
+      font-size: 14px;
+      color: #9e9e9e;
+    }
+
+    .brand {
+      margin-top: 30px;
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="badge">🚨 AGENDA ABERTA • VAGAS LIMITADAS</div>
+
+    <h1>Higienização Premium de Estofos</h1>
+
+    <p>
+     
+      Atendimento exclusivo por tempo limitado.
+    </p>
+
+    <div class="countdown">
+      <div class="time-box">
+        <span id="days">00</span>
+        <small>Dias</small>
+      </div>
+      <div class="time-box">
+        <span id="hours">00</span>
+        <small>Horas</small>
+      </div>
+      <div class="time-box">
+        <span id="minutes">00</span>
+        <small>Min</small>
+      </div>
+      <div class="time-box">
+        <span id="seconds">00</span>
+        <small>Seg</small>
+      </div>
+    </div>
+
+    <a href="https://wa.me/351930577316?text=Olá%2C%20gostaria%20de%20agendar%20uma%20higienização." class="cta">Agendar agora</a>
+
+    <div class="social-proof">
+      ⭐️⭐️⭐️⭐️⭐️ clientes atendidos com excelência
+    </div>
+
+    <div class="brand">💎 LUXPURITY</div>
+  </div>
+
+  <script>
+    const endDate = new Date();
+    endDate.setDate(endDate.getDate() + 3);
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = endDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+
+</body>
+
+</html>
